@@ -17,8 +17,11 @@
 .env.development.local
 .env.test.local
 .env.production.local
+<<<<<<< HEAD
 .idea/misc.xml
 .idea/vcs.xml
+=======
+>>>>>>> a5bfd7bc2cb8f62649599b24d51f41b239d9a3b8
 
 npm-debug.log*
 yarn-debug.log*

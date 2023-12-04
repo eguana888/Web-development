@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
+import logo from './logo.svg';
+import './App.css';
+import Calender from './Calender';
 import Timer from './Timer';
 import Diary from './diary';
 import Stopwatch from './Stopwatch';
 
-export default function App() {
-  return <Diary />;
+function App() {
+  return (
+      <Calender/>
+  );
 }
+
+export default App;
