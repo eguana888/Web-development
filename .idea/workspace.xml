@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4252b6fb-201f-4796-8261-6bf761d96a13" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="timer_diary" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="master" />
+                    <option name="lastUsedInstant" value="1701698646" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="timer_diary" />
+                    <option name="lastUsedInstant" value="1701696226" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="Cander" />
+                    <option name="lastUsedInstant" value="1701695211" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2YtzLDNzp6rk1OrDwQVwG1Aj4OD" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "map",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/jinu8/IdeaProjects/final",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "C:/Users/jinu8/AppData/Roaming/JetBrains/IntelliJIdea2023.2/node/node-v18.15.0-win-x64/node",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "me.rerere.discordij.setting.DiscordIJConfigurableProject",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.2.3\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected="npm.npm start">
+    <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
+      <method v="2" />
+    </configuration>
+    <configuration name="npm start" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4252b6fb-201f-4796-8261-6bf761d96a13" name="Changes" comment="" />
+      <created>1701359608146</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1701359608146</updated>
+      <workItem from="1701359609080" duration="298000" />
+      <workItem from="1701359924232" duration="206000" />
+      <workItem from="1701360146756" duration="249000" />
+      <workItem from="1701360493126" duration="103000" />
+      <workItem from="1701360610176" duration="87000" />
+      <workItem from="1701360708351" duration="167000" />
+      <workItem from="1701360889725" duration="258000" />
+      <workItem from="1701361162715" duration="293000" />
+      <workItem from="1701362284030" duration="174000" />
+      <workItem from="1701362473739" duration="477000" />
+      <workItem from="1701362967248" duration="664000" />
+      <workItem from="1701363654304" duration="668000" />
+      <workItem from="1701507412134" duration="83000" />
+      <workItem from="1701507509500" duration="171000" />
+      <workItem from="1701507695126" duration="101000" />
+      <workItem from="1701507809616" duration="54000" />
+      <workItem from="1701507875304" duration="302000" />
+      <workItem from="1701508192819" duration="113000" />
+      <workItem from="1701508320286" duration="9355000" />
+      <workItem from="1701606857552" duration="29000" />
+      <workItem from="1701609934550" duration="1152000" />
+      <workItem from="1701686649760" duration="653000" />
+      <workItem from="1701691787380" duration="814000" />
+      <workItem from="1701692628624" duration="430000" />
+      <workItem from="1701693079856" duration="2061000" />
+      <workItem from="1701695183547" duration="340000" />
+      <workItem from="1701695538519" duration="3456000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="timer_diary" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
