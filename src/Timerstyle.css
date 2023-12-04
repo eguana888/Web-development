@@ -1,0 +1,57 @@
+.timer__area {
+    align-items: center;
+    align-self: center;
+    width: 100%;
+    background-color: #EAEAEA;
+    border-radius: 15px;
+}
+
+.timer__time__area {
+    margin: auto;
+    width: fit-content;
+    text-align: center;
+}
+
+.timer__time__text {
+    font-size: 40px;
+    width: 55px;
+    text-align: center;
+    padding-top: 20px;
+    margin: auto;
+}
+
+.timer__symbol__text {
+    font-size: 40px;
+    width: 10px;
+    text-align: center;
+    padding-top: 20px;
+    margin: auto;
+}
+
+.timer__btn__area {
+    margin: auto;
+    width: fit-content;
+    text-align: center;
+}
+
+.btn_time {
+    background-color: #EAEAEA;
+    font-size: 15px;
+    border-radius: 10px;
+    width: fit-content;
+    margin: auto;
+}
+
+.btn_setup {
+    background-color: #EAEAEA;
+    font-size: 14px;
+    border-radius: 10px;
+    width: fit-content;
+    margin: 10px;
+}
+
+.timer__btn__toggle {
+    margin: 0px auto;
+    width: fit-content;
+    text-align: center;
+}
