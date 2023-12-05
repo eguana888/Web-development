@@ -5,7 +5,7 @@ import CurentMap from "./CurentMap";
 
 function App() {
   return (
-    <CurentMap address={"경기도 용인시"}/>
+    <Calender/>
   );
 }
 

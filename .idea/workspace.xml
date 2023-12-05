@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4252b6fb-201f-4796-8261-6bf761d96a13" name="Changes" comment="" />
+    <list default="true" id="4252b6fb-201f-4796-8261-6bf761d96a13" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,16 +39,12 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="master" />
-                    <option name="lastUsedInstant" value="1701698646" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="timer_diary" />
-                    <option name="lastUsedInstant" value="1701696226" />
+                    <option name="branchName" value="map" />
+                    <option name="lastUsedInstant" value="1701700553" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="Cander" />
-                    <option name="lastUsedInstant" value="1701695211" />
+                    <option name="lastUsedInstant" value="1701700552" />
                   </RecentBranch>
                 </list>
               </option>
@@ -80,7 +81,7 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_interpreter_path": "C:/Users/jinu8/AppData/Roaming/JetBrains/IntelliJIdea2023.2/node/node-v18.15.0-win-x64/node",
+    "nodejs_interpreter_path": "node",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "me.rerere.discordij.setting.DiscordIJConfigurableProject",
     "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.2.3\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
@@ -137,6 +138,7 @@
       <workItem from="1701693079856" duration="2061000" />
       <workItem from="1701695183547" duration="340000" />
       <workItem from="1701695538519" duration="3456000" />
+      <workItem from="1701701004619" duration="1342000" />
     </task>
     <servers />
   </component>
@@ -144,6 +146,11 @@
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="bbeaf4bb-6e48-42ed-8076-f78f70f5142f" value="TOOL_WINDOW" />
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
@@ -158,6 +165,17 @@
                       </list>
                     </value>
                   </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+        <entry key="bbeaf4bb-6e48-42ed-8076-f78f70f5142f">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
                 </map>
               </option>
             </State>
