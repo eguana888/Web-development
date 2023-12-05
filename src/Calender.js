@@ -54,7 +54,7 @@ const Week = () => {
     )
 }
 
-const Body = ({CurrentDate, list}) => {
+const Body = ({CurrentDate, list, check}) => {
     const mStart = new Date(CurrentDate.getFullYear(), CurrentDate.getMonth(),1);
     const mEnd = new Date(CurrentDate.getFullYear(), CurrentDate.getMonth()+1,0);
     let sdayi = new Date(mStart);
@@ -69,8 +69,8 @@ const Body = ({CurrentDate, list}) => {
     }
 
 
-    const onWrite = (dayt) => {
-        
+    const onWrite = () => {
+        setCheck(true);
     }
 
 
@@ -115,7 +115,7 @@ const Body = ({CurrentDate, list}) => {
             }
             data = format(day, 'd');
             days.push(
-                <div style={cSty} onClick={()=>onWrite(day)}>
+                <div style={cSty} onClick={()=>onWrite()}>
                     <div >
                         {data}
                         <br/>
@@ -151,7 +151,11 @@ const Body = ({CurrentDate, list}) => {
         );
         days = [];
     }
-    return <div>{cal}</div>;
+
+    function Fir(){
+        return (<div>{cal}</div>)
+    }
+    return Fir();
     
 
 }
@@ -160,6 +164,7 @@ const Body = ({CurrentDate, list}) => {
 function Calender(){
     const [CurrentDate, setCurrentDate] = useState(new Date());
     const [list, setList] = useState([{CDate: CurrentDate, tilte: '예: 과제 끝내기', check: false}]);
+    const [check, setCheck] = useState(false);
 
     const prevDate = () => {
         
@@ -173,8 +178,9 @@ function Calender(){
         <div>
             <Header CurrentDate = {CurrentDate} prevDate = {prevDate} NextDate = {NextDate}/>
             <Week/>
-            <Body CurrentDate = {CurrentDate} list = {list}/>
+            <Body CurrentDate = {CurrentDate} list = {list} check = {check}/>
         </div>
+        
     );
 
 };
