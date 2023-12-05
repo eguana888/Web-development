@@ -1,29 +1,49 @@
-import { addMonths, format, subMonths, addDays,subDays} from "date-fns";
+import { addMonths, format, subMonths, addDays,subDays, getFullYear} from "date-fns";
 import React, { useState } from "react";
 
+
 const Header = ({CurrentDate,prevDate,NextDate}) => {
+    
+
     return(
-        <div>
+        <div >
+            <span>
+                <button onClick={prevDate}>이전</button>
+            </span>
             <span>{format(CurrentDate,'yyyy')}.</span>
             <span>{format(CurrentDate,'M')}</span>
             <span>
-                <button onClick={prevDate}>이전</button>
                 <button onClick={NextDate}>이후</button>
             </span>
         </div>
     );
 };
+
 const Week = () => {
     
+
+    const cSty = {
+        width: '200px',
+        height: '50px',
+        borderRadius: '10px',
+        border: '2px solid #DDD',
+        top: '50%',
+        left: '50%'
+
+    };
+
     const date = ['일요일', '월요일', '화요일','수요일','목요일','금요일','토요일']
 
     const dayRender = () => {
         const day = [];
         for(let i =0; i<7; i++){
-            day.push(<td>{date[i] + '/'}</td>)
+            day.push(<td style={cSty}>{date[i] + ' '}</td>)
         }
         return day;
     }
+
+    
+
 
     return(
         
@@ -36,51 +56,95 @@ const Week = () => {
     )
 }
 
-const Body = ({CurrentDate}) => {
+const Body = ({CurrentDate,list,onDay}) => {
     const mStart = new Date(CurrentDate.getFullYear(), CurrentDate.getMonth(),1);
-    const mEnd = new Date(CurrentDate.getFullYear(), CurrentDate.getMonth(+1, 0));
+    const mEnd = new Date(CurrentDate.getFullYear(), CurrentDate.getMonth()+1,0);
     let sdayi = new Date(mStart);
     let edayi = new Date(mEnd);
 
     const sday = subDays(sdayi, sdayi.getDay());
     const eday = addDays(edayi, 6 - edayi.getDay());
 
-    
+
+    const same = (ta1, ta2) =>{
+        return ta1.getFullYear() == ta2.getFullYear() &&ta1.getMonth() == ta2.getMonth() &&ta1.getDate() == ta2.getDate()
+    }
+
 
     
+      
 
-    const rows = [];
+    const cal = [];
     let days = [];
     let day = sday;
-    let formattedDate = '';
+    let data = '';
+    let cSty = {
+        width: '200px',
+        height: '50px',
+        border: '2px solid #DDD',
+        display: 'inline-block',
+        magin: '5px'
+
+    };
 
     while (day <= eday) {
         for (let i = 0; i < 7; i++) {
-            formattedDate = format(day, 'd');
+            if(same(day,CurrentDate)){
+                cSty = {
+                    width: '200px',
+                    height: '50px',
+                    border: '2px solid #DDD',
+                    display: 'inline-block',
+                    magin: '5px',
+                    color: 'red'
+                };
+            }
+            data = format(day, 'd');
             days.push(
-                <div style={{ display: 'inline-block', margin:'5px' }}
-                onClick={()=> {}}>
+                <div style={cSty}
+                onClick={()=> onDay(list)}>
                     <span>
-                        {formattedDate}
+                        {data}
                     </span>
                 </div>,
             );
             day = addDays(day, 1);
+            cSty = {
+                width: '200px',
+                height: '50px',
+                border: '2px solid #DDD',
+                display: 'inline-block',
+                magin: '5px'
+        
+            };
         }
-        rows.push(
+        
+        cal.push(
             <div >
                 {days}
             </div>,
         );
         days = [];
     }
-    return <div className="body">{rows}</div>;
+    return <div>{cal}</div>;
     
 
 }
 
-export default function Calender(){
+
+
+
+
+
+
+function Calender(){
     const [CurrentDate, setCurrentDate] = useState(new Date());
+    const [list, setList] = useState([{CDate: CurrentDate, tilte: '예: 과제 끝내기', check: false}]);
+
+
+
+
+
 
     const prevDate = () => {
         
@@ -90,14 +154,18 @@ export default function Calender(){
         setCurrentDate(addMonths(CurrentDate, 1));
     };
 
-    const onDay = () =>{
-            
+    const onDay = (list,CurrentDate) =>{
+        
     }
+
     return(
         <div>
             <Header CurrentDate = {CurrentDate} prevDate = {prevDate} NextDate = {NextDate}/>
             <Week/>
-            <Body CurrentDate = {CurrentDate}/>
+            <Body CurrentDate = {CurrentDate} list = {list} onDay = {onDay}/>
         </div>
     );
+
 };
+
+export default Calender;
