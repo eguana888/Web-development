@@ -42,8 +42,6 @@ const Week = () => {
         return day;
     }
 
-    
-
 
     return(
         
@@ -75,10 +73,6 @@ const Body = ({CurrentDate, list}) => {
         
     }
 
-
-
-    
-      
 
     const cal = [];
     let days = [];
@@ -163,19 +157,9 @@ const Body = ({CurrentDate, list}) => {
 }
 
 
-
-
-
-
-
 function Calender(){
     const [CurrentDate, setCurrentDate] = useState(new Date());
     const [list, setList] = useState([{CDate: CurrentDate, tilte: '예: 과제 끝내기', check: false}]);
-
-
-
-
-
 
     const prevDate = () => {
         
@@ -184,8 +168,6 @@ function Calender(){
     const NextDate = () => {
         setCurrentDate(addMonths(CurrentDate, 1));
     };
-
-    
 
     return(
         <div>
