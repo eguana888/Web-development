@@ -1,10 +1,7 @@
 import { addMonths, format, subMonths, addDays,subDays} from "date-fns";
 import React, { useState } from "react";
 
-
 const Header = ({CurrentDate,prevDate,NextDate}) => {
-    
-
     return(
         <div>
             <span>{format(CurrentDate,'yyyy')}.</span>
@@ -16,7 +13,6 @@ const Header = ({CurrentDate,prevDate,NextDate}) => {
         </div>
     );
 };
-
 const Week = () => {
     
     const date = ['일요일', '월요일', '화요일','수요일','목요일','금요일','토요일']
@@ -28,9 +24,6 @@ const Week = () => {
         }
         return day;
     }
-
-    
-
 
     return(
         
@@ -86,13 +79,7 @@ const Body = ({CurrentDate}) => {
 
 }
 
-
-
-
-
-
-
-function Calender(){
+export default function Calender(){
     const [CurrentDate, setCurrentDate] = useState(new Date());
 
     const prevDate = () => {
@@ -106,7 +93,6 @@ function Calender(){
     const onDay = () =>{
             
     }
-
     return(
         <div>
             <Header CurrentDate = {CurrentDate} prevDate = {prevDate} NextDate = {NextDate}/>
@@ -114,7 +100,4 @@ function Calender(){
             <Body CurrentDate = {CurrentDate}/>
         </div>
     );
-
 };
-
-export default Calender;
