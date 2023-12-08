@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4252b6fb-201f-4796-8261-6bf761d96a13" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/ToDay.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Calender.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Calender.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CurentMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/CurentMap.js" afterDir="false" />
-    </list>
+    <list default="true" id="4252b6fb-201f-4796-8261-6bf761d96a13" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -176,7 +168,7 @@
       <workItem from="1701910948709" duration="621000" />
       <workItem from="1701918687175" duration="638000" />
       <workItem from="1702005461071" duration="3651000" />
-      <workItem from="1702009132230" duration="2784000" />
+      <workItem from="1702009132230" duration="3103000" />
     </task>
     <servers />
   </component>
