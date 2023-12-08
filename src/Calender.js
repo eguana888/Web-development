@@ -1,4 +1,4 @@
-import { addMonths, format, subMonths, addDays,subDays, getFullYear} from "date-fns";
+import { addMonths, format, subMonths, addDays,subDays} from "date-fns";
 import React, { useState } from "react";
 
 
@@ -6,13 +6,13 @@ const Header = ({CurrentDate,prevDate,NextDate}) => {
     
 
     return(
-        <div >
-            <span>
+        <div style={{padding:10}}>
+            <span style={{padding:10}}>
                 <button onClick={prevDate}>이전</button>
             </span>
-            <span>{format(CurrentDate,'yyyy')}.</span>
+            <span >{format(CurrentDate,'yyyy')}.</span>
             <span>{format(CurrentDate,'M')}</span>
-            <span>
+            <span style={{padding:10}}>
                 <button onClick={NextDate}>이후</button>
             </span>
         </div>
@@ -42,8 +42,6 @@ const Week = () => {
         return day;
     }
 
-    
-
 
     return(
         
@@ -56,11 +54,12 @@ const Week = () => {
     )
 }
 
-const Body = ({CurrentDate,list,onDay}) => {
+const Body = ({CurrentDate, list, check,handClick}) => {
     const mStart = new Date(CurrentDate.getFullYear(), CurrentDate.getMonth(),1);
     const mEnd = new Date(CurrentDate.getFullYear(), CurrentDate.getMonth()+1,0);
     let sdayi = new Date(mStart);
     let edayi = new Date(mEnd);
+    
 
     const sday = subDays(sdayi, sdayi.getDay());
     const eday = addDays(edayi, 6 - edayi.getDay());
@@ -72,10 +71,14 @@ const Body = ({CurrentDate,list,onDay}) => {
 
 
     
-      
+    
 
+
+
+    let a = 0;
     const cal = [];
     let days = [];
+    let dayCount = [];
     let day = sday;
     let data = '';
     let cSty = {
@@ -83,29 +86,62 @@ const Body = ({CurrentDate,list,onDay}) => {
         height: '50px',
         border: '2px solid #DDD',
         display: 'inline-block',
-        magin: '5px'
+        magin: '5px',
+        overflow: 'hidden'
 
     };
+    
+
+
+
+
+
 
     while (day <= eday) {
         for (let i = 0; i < 7; i++) {
+            let z = i + a;
             if(same(day,CurrentDate)){
+                cSty = {
+                    minWidth: '200px',
+                    minHeight: '50px',
+                    border: '2px solid #DDD',
+                    display: 'inline-block',
+                    magin: '5px',
+                    backgroundColor: '#ffc9ce',
+                    overflow: 'hidden'
+
+                };
+            }else if(day.getMonth() != CurrentDate.getMonth()){
                 cSty = {
                     width: '200px',
                     height: '50px',
                     border: '2px solid #DDD',
                     display: 'inline-block',
                     magin: '5px',
-                    color: 'red'
+                    backgroundColor: '#E5E5E5',
+                    overflow: 'hidden'
+
                 };
             }
             data = format(day, 'd');
+            dayCount.push(day)
             days.push(
-                <div style={cSty}
-                onClick={()=> onDay(list)}>
-                    <span>
+                
+                <div style={cSty} onClick={()=>handClick(dayCount[z])}>
+                    <div >
                         {data}
-                    </span>
+                        <br/>
+                        {list.map(item =>{
+                            if(same(day, item.CDate)){
+                                return(
+                                <span>
+                                    {item.tilte}
+                                </span>
+                            )
+                            }
+                            return null;
+                        })}
+                    </div>
                 </div>,
             );
             day = addDays(day, 1);
@@ -114,7 +150,9 @@ const Body = ({CurrentDate,list,onDay}) => {
                 height: '50px',
                 border: '2px solid #DDD',
                 display: 'inline-block',
-                magin: '5px'
+                magin: '5px',
+                overflow: 'hidden'
+        
             };
         }
         
@@ -124,17 +162,27 @@ const Body = ({CurrentDate,list,onDay}) => {
             </div>,
         );
         days = [];
+        a = a+7;
     }
-    return <div>{cal}</div>;
+    
+
+
+    return (<div>{cal}</div>);
+    
+
 }
 
 
-function Calender(){
+function Calender(pro){
     const [CurrentDate, setCurrentDate] = useState(new Date());
     const [list, setList] = useState([{CDate: CurrentDate, tilte: '예: 과제 끝내기', check: false}]);
+    const [check, setCheck] = useState(false);
 
-
-
+    
+    const handClick = (day) =>{
+        pro.onSend(day)
+    }
+    
     const prevDate = () => {
         
         setCurrentDate(subMonths(CurrentDate, 1));
@@ -143,16 +191,14 @@ function Calender(){
         setCurrentDate(addMonths(CurrentDate, 1));
     };
 
-    const onDay = (list,CurrentDate) =>{
-        
-    }
-
     return(
         <div>
-            <Header CurrentDate = {CurrentDate} prevDate = {prevDate} NextDate = {NextDate}/>
-            <Week/>
-            <Body CurrentDate = {CurrentDate} list = {list} onDay = {onDay}/>
+            <Header CurrentDate={CurrentDate} prevDate={prevDate} NextDate={NextDate} />
+            <Week />
+            <Body CurrentDate={CurrentDate} list={list} check={check} handClick = {handClick}/>
+            
         </div>
+        
     );
 
 };
