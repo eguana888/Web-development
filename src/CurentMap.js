@@ -11,27 +11,20 @@ export default function CurentMap({address}) {
 
         useEffect(() => {
             navermaps.Service.geocode({query: address}, function (status, response) {
-                console.log("geocode status: ", status);
-                console.log("geocode response: ", response);
                 if (status != navermaps.Service.Status.OK) {
                     return alert("wrong");
                 } else {
                     var result = response.v2,
                         item = result.addresses;
-                    console.log("geocoding result: ", result);
-                    console.log("geocoding item: ", item);
                     if (item!=null || item[0]!=null) {
                         let x = parseFloat(item[0]?.x);
-                        console.log(item[0]?.x);
                         let y = parseFloat(item[0]?.y);
-                        console.log(item[0]?.y);
 
                         setLng(x);
                         setLat(y);
                         setZoom(15);
                         setRodaAddress(item[0]?.roadAddress);
 
-                        console.log("geocode road: ", roadAddress);
                     } else{
                         console.error("Error!!!");
                     }

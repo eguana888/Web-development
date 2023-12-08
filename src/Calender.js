@@ -20,8 +20,6 @@ const Header = ({CurrentDate,prevDate,NextDate}) => {
 };
 
 const Week = () => {
-    
-
     const cSty = {
         width: '200px',
         height: '50px',
@@ -29,11 +27,8 @@ const Week = () => {
         border: '2px solid #DDD',
         top: '50%',
         left: '50%'
-
     };
-
     const date = ['일요일', '월요일', '화요일','수요일','목요일','금요일','토요일']
-
     const dayRender = () => {
         const day = [];
         for(let i =0; i<7; i++){
@@ -41,16 +36,12 @@ const Week = () => {
         }
         return day;
     }
-
-
     return(
-        
         <table>
             <tr>
                 {dayRender()}
             </tr>
         </table>
-        
     )
 }
 
@@ -59,21 +50,13 @@ const Body = ({CurrentDate, list, check,handClick}) => {
     const mEnd = new Date(CurrentDate.getFullYear(), CurrentDate.getMonth()+1,0);
     let sdayi = new Date(mStart);
     let edayi = new Date(mEnd);
-    
 
     const sday = subDays(sdayi, sdayi.getDay());
     const eday = addDays(edayi, 6 - edayi.getDay());
 
-
     const same = (ta1, ta2) =>{
         return ta1.getFullYear() == ta2.getFullYear() &&ta1.getMonth() == ta2.getMonth() &&ta1.getDate() == ta2.getDate()
     }
-
-
-    
-    
-
-
 
     let a = 0;
     const cal = [];
@@ -90,12 +73,6 @@ const Body = ({CurrentDate, list, check,handClick}) => {
         overflow: 'hidden'
 
     };
-    
-
-
-
-
-
 
     while (day <= eday) {
         for (let i = 0; i < 7; i++) {
@@ -164,15 +141,9 @@ const Body = ({CurrentDate, list, check,handClick}) => {
         days = [];
         a = a+7;
     }
-    
-
-
     return (<div>{cal}</div>);
-    
 
 }
-
-
 function Calender(pro){
     const [CurrentDate, setCurrentDate] = useState(new Date());
     const [list, setList] = useState([{CDate: CurrentDate, tilte: '예: 과제 끝내기', check: false}]);
@@ -196,7 +167,7 @@ function Calender(pro){
             <Header CurrentDate={CurrentDate} prevDate={prevDate} NextDate={NextDate} />
             <Week />
             <Body CurrentDate={CurrentDate} list={list} check={check} handClick = {handClick}/>
-            
+
         </div>
         
     );
