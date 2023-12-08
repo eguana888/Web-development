@@ -7,9 +7,8 @@
     <list default="true" id="e40aaabd-0734-4946-b2de-f83031b25b0a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Calender.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Calender.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CurentMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/CurentMap.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ToDay.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/ToDay.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,12 +97,35 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1702038975864</updated>
-      <workItem from="1702038978192" duration="1707000" />
+      <workItem from="1702038978192" duration="6103000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="map" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="LAST_COMMIT_MESSAGE" value="" />

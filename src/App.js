@@ -11,8 +11,8 @@ function App() {
   const [check, setCheck]=useState(false);
 
   // ToDay의 배열을 부모에 놓고 부모에서 받아서 수정으로 변경
-  const [work, setWork] = useState([]);
-  const [promiss, setPromiss] = useState([]);
+  // const [getwork, setGetWork] = useState([]);
+  // const [promiss, setPromiss] = useState([]);
 
   const currentData = new Date().getDay();
   const handCom = (data) => {
@@ -21,13 +21,12 @@ function App() {
     setCheck(true);
   }
 
-  console.log(work);
+  // console.log(getwork);
 
   return (
     <div>
-      <Calender onSend = {handCom} work={work} setWork={setWork}/>
-      {check && <ToDay currentdata={currentData} today={getdate} work={work} setWork={setWork}
-        promiss={promiss} setPromiss={setPromiss}/>}
+      <Calender onSend = {handCom}/>
+      {check && <ToDay currentdata={currentData} today={getdate} />}
     </div>
 
   );

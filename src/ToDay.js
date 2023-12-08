@@ -3,10 +3,10 @@ import {addMonths, format, subMonths, addDays, subDays} from "date-fns";
 import CurentMap from "./CurentMap";
 
 // 하루의 일정을 선택할 수 있는 화면
-export default function ToDay({currentdata ,today, work, setWork, promiss, setPromiss}){
+export default function ToDay({currentdata ,today}){
     const [pageNum, setPagenum] = useState(0);
-    // const [work, setWork] = useState([]);
-    // const [promiss, setPromiss] = useState([]);
+    const [work, setWork] = useState([]);
+    const [promiss, setPromiss] = useState([]);
 
 
     //클릭시 날짜와 현재 날짜 비교해서 진우꺼 출력 시도 ==> 실패
@@ -16,12 +16,17 @@ export default function ToDay({currentdata ,today, work, setWork, promiss, setPr
     console.log("클릭",parseInt(clickDay));
     console.log("현재",currentdata);
 
-    useEffect(() => {
-        if (clickDay === parseInt(today)) {
-            setShowToday(true);
-            console.log(showToday);
-        }
-    }, []);
+    // useEffect(() => {
+    //     setGetWork(work);
+    // }, [work, setGetWork]);
+
+    // useEffect(() => {
+    //     setGetWork(work);
+    //     if (clickDay === parseInt(today)) {
+    //         setShowToday(true);
+    //         console.log(showToday);
+    //     }
+    // }, []);
 
 
     return(
@@ -40,6 +45,7 @@ export default function ToDay({currentdata ,today, work, setWork, promiss, setPr
 
 // "할일"을 선택했을때 동작하는 컴포넌트
 const TodayComponent=({todos, setTodos, ClickDay})=>{
+
 
     useEffect(() => {
         const fillterWork = todos.filter(todo => todo.ClickDay === ClickDay);
@@ -103,7 +109,7 @@ const TodayComponent=({todos, setTodos, ClickDay})=>{
             <TodayInput todos={todos} setTodos={setTodos} ClickDay={ClickDay}/>
             <TodayList todos={todos} setTodos={setTodos} ClickDay={ClickDay}/>
             <br/>
-            <button type={"button"}>확인</button>
+            <button type={"button"} onClick={()=>setTodos(todos)}>확인</button>
         </div>
     )
 }
@@ -139,8 +145,8 @@ const PromissComponent=({todos, setTodos, ClickDay})=>{
                     setContent(event.target.value);
                 }} value={content}/><br/>
                 <input type={"text"} placeholder={"장소(구체적으로)"}  onKeyPress={(event) => {
-                    if (event.key == "Enter") {
-                        if (title.trim() != "" && content.trim() != "" && location.trim() != "") {
+                    if (event.key === "Enter") {
+                        if (title.trim() !== "" && content.trim() !== "" && location.trim() !== "") {
                             onAdd(location);
                             setTitle("");
                             setContent("");
