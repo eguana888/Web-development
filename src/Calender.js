@@ -69,12 +69,6 @@ const Body = ({CurrentDate, list, check,handClick}) => {
         return ta1.getFullYear() == ta2.getFullYear() &&ta1.getMonth() == ta2.getMonth() &&ta1.getDate() == ta2.getDate()
     }
 
-
-    
-    
-
-
-
     let a = 0;
     const cal = [];
     let days = [];
@@ -90,12 +84,6 @@ const Body = ({CurrentDate, list, check,handClick}) => {
         overflow: 'hidden'
 
     };
-    
-
-
-
-
-
 
     while (day <= eday) {
         for (let i = 0; i < 7; i++) {

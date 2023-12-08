@@ -1,17 +1,43 @@
-import React, {useRef, useState} from "react";
-import { addMonths, format, subMonths, addDays,subDays} from "date-fns";
+import React, { useRef, useState } from "react";
+import { addMonths, format, subMonths, addDays, subDays } from "date-fns";
+import Diary from "./diary";
+import Stopwatch from "./Stopwatch";
 
-// 하루의 일정을 선택할 수 있는 화면
-export default function ToDay({today}){
+export default function ToDay({ today }) {
     const [pageNum, setPagenum] = useState(0);
     const [work, setWork] = useState([]);
     const [promiss, setPromiss] = useState([]);
+    const [showStopwatch, setShowStopwatch] = useState(0);
+    const [diaryContent, setDiaryContent] = useState(""); // 일기 내용 추가
 
-    const handClick = (work) =>{
-        today.onSend(work)
-    }
+    const handClick = (work) => {
+        today.onSend(work);
+    };
 
+    //일기 데이터
+    const onSaveDiary = (content) => {
+        console.log("저장 전 diaryContent:", content);
 
+        const diaryData = {
+            date: format(today, "yyyy-MM-dd"),
+            content: content,
+        };
+
+        console.log("저장될 일기 데이터:", diaryData);
+
+        const existingDiaries = JSON.parse(localStorage.getItem("diaries")) || [];
+        const existingDiaryIndex = existingDiaries.findIndex(
+            (diary) => diary.date === diaryData.date
+        );
+
+        if (existingDiaryIndex !== -1) {
+            existingDiaries[existingDiaryIndex] = diaryData;
+        } else {
+            existingDiaries.push(diaryData);
+        }
+
+        localStorage.setItem("diaries", JSON.stringify(existingDiaries));
+    };
 
     return(
         <div style={{margin: "10px"}}>
@@ -21,9 +47,21 @@ export default function ToDay({today}){
                 <button type={"button"} onClick={()=>setPagenum(2)}>약속</button>
                 {pageNum == 1 && <TodayComponent todos={work} setTodos={setWork} handClick ={handClick}/>}
                 {pageNum ==2 && <PromissComponent todos={promiss} setTodos={setPromiss}/>}
+
+                <button  style={{margin: "10px"}} type={"button"} onClick={()=>setShowStopwatch(1)} >스톱워치</button>
+                <button type={"button"} onClick={()=>setShowStopwatch(2)}>일기장</button>
+                {showStopwatch == 1 && <Stopwatch />}
+                {showStopwatch == 2 && (
+                    <Diary
+                        onSaveDiary={onSaveDiary}  // props로 onSaveDiary 함수를 전달
+                        diaryContent={diaryContent}
+                        setDiaryContent={setDiaryContent}
+                    />
+                )}
+                {/* 클릭시 useState를 통해 Stopwatch,Diary 컴포넌트 호출 */}
             </div>
         </div>
-    )
+    );
 }
 // "할일"을 선택했을때 동작하는 컴포넌트
 const TodayComponent=({todos, setTodos,handClick})=>{
