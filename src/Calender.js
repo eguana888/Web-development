@@ -115,7 +115,6 @@ const Body = ({CurrentDate,list,onDay}) => {
                 border: '2px solid #DDD',
                 display: 'inline-block',
                 magin: '5px'
-        
             };
         }
         
@@ -127,22 +126,12 @@ const Body = ({CurrentDate,list,onDay}) => {
         days = [];
     }
     return <div>{cal}</div>;
-    
-
 }
-
-
-
-
-
 
 
 function Calender(){
     const [CurrentDate, setCurrentDate] = useState(new Date());
     const [list, setList] = useState([{CDate: CurrentDate, tilte: '예: 과제 끝내기', check: false}]);
-
-
-
 
 
 

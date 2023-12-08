@@ -45,7 +45,7 @@ export default function CurentMap({address}) {
                 center={{lat, lng}}
                 defaultZoom={12}
                 zoom={zoom}
-                style={{width: "400px", height: "400px"}}>
+                style={{width: "200px", height: "200px"}}>
                 <Marker position={{lat, lng}}/>
             </NaverMap>
         );
@@ -54,7 +54,7 @@ export default function CurentMap({address}) {
         <NavermapsProvider
             ncpClientId={"c993q8ts9o"}
             submodules={["geocoder"]}>
-            <MapDiv style={{width: "800px", height: "800px"}}>
+            <MapDiv style={{width: "200px", height: "200px"}}>
                 <Map address={address}/>
             </MapDiv>
         </NavermapsProvider>
