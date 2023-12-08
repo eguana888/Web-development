@@ -54,11 +54,12 @@ const Week = () => {
     )
 }
 
-const Body = ({CurrentDate, list, check}) => {
+const Body = ({CurrentDate, list, check,handClick}) => {
     const mStart = new Date(CurrentDate.getFullYear(), CurrentDate.getMonth(),1);
     const mEnd = new Date(CurrentDate.getFullYear(), CurrentDate.getMonth()+1,0);
     let sdayi = new Date(mStart);
     let edayi = new Date(mEnd);
+    
 
     const sday = subDays(sdayi, sdayi.getDay());
     const eday = addDays(edayi, 6 - edayi.getDay());
@@ -69,13 +70,15 @@ const Body = ({CurrentDate, list, check}) => {
     }
 
 
-    const onWrite = () => {
-        setCheck(true);
-    }
+    
+    
 
 
+
+    let a = 0;
     const cal = [];
     let days = [];
+    let dayCount = [];
     let day = sday;
     let data = '';
     let cSty = {
@@ -87,9 +90,16 @@ const Body = ({CurrentDate, list, check}) => {
         overflow: 'hidden'
 
     };
+    
+
+
+
+
+
 
     while (day <= eday) {
         for (let i = 0; i < 7; i++) {
+            let z = i + a;
             if(same(day,CurrentDate)){
                 cSty = {
                     minWidth: '200px',
@@ -114,8 +124,10 @@ const Body = ({CurrentDate, list, check}) => {
                 };
             }
             data = format(day, 'd');
+            dayCount.push(day)
             days.push(
-                <div style={cSty} onClick={()=>onWrite()}>
+                
+                <div style={cSty} onClick={()=>handClick(dayCount[z])}>
                     <div >
                         {data}
                         <br/>
@@ -150,22 +162,27 @@ const Body = ({CurrentDate, list, check}) => {
             </div>,
         );
         days = [];
+        a = a+7;
     }
+    
 
-    function Fir(){
-        return (<div>{cal}</div>)
-    }
-    return Fir();
+
+    return (<div>{cal}</div>);
     
 
 }
 
 
-function Calender(){
+function Calender(pro){
     const [CurrentDate, setCurrentDate] = useState(new Date());
     const [list, setList] = useState([{CDate: CurrentDate, tilte: '예: 과제 끝내기', check: false}]);
     const [check, setCheck] = useState(false);
 
+    
+    const handClick = (day) =>{
+        pro.onSend(day)
+    }
+    
     const prevDate = () => {
         
         setCurrentDate(subMonths(CurrentDate, 1));
@@ -176,9 +193,10 @@ function Calender(){
 
     return(
         <div>
-            <Header CurrentDate = {CurrentDate} prevDate = {prevDate} NextDate = {NextDate}/>
-            <Week/>
-            <Body CurrentDate = {CurrentDate} list = {list} check = {check}/>
+            <Header CurrentDate={CurrentDate} prevDate={prevDate} NextDate={NextDate} />
+            <Week />
+            <Body CurrentDate={CurrentDate} list={list} check={check} handClick = {handClick}/>
+            
         </div>
         
     );
