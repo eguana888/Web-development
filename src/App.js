@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import Calender from './Calender';
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import { addMonths, format, subMonths, addDays,subDays} from "date-fns";
 import ToDay from './ToDay';
 import CurentMap from "./CurentMap";
@@ -10,8 +10,18 @@ function App() {
   const [getdate, setGetdata]=useState();
   const [check, setCheck]=useState(false);
 
-  // ToDay의 배열을 부모에 놓고 부모에서 받아서 수정으로 변경
-  // const [getwork, setGetWork] = useState([]);
+  const [getwork, setGetwork] = useState();
+
+  useEffect(() => {
+    const existData = localStorage.getItem("TodayList");
+    const storedData = existData ? JSON.parse(localStorage.getItem("TodayList")) : [];
+    if (storedData) {
+      setGetwork(storedData);
+    }
+  }, []);
+
+  console.log("getwork",getwork);
+
   // const [promiss, setPromiss] = useState([]);
 
   const currentData = new Date().getDay();
@@ -20,13 +30,12 @@ function App() {
     setGetdata(data);
     setCheck(true);
   }
-
   // console.log(getwork);
 
   return (
     <div>
       <Calender onSend = {handCom}/>
-      {check && <ToDay currentdata={currentData} today={getdate} />}
+      {check && <ToDay currentdata={currentData} today={getdate} getwork={getwork} setGetwork={setGetwork}/>}
     </div>
 
   );

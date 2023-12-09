@@ -3,30 +3,46 @@ import {addMonths, format, subMonths, addDays, subDays} from "date-fns";
 import CurentMap from "./CurentMap";
 
 // 하루의 일정을 선택할 수 있는 화면
-export default function ToDay({currentdata ,today}){
+export default function ToDay({currentdata ,today, getwork, setGetwork}){
     const [pageNum, setPagenum] = useState(0);
-    const [work, setWork] = useState([]);
+    const [work, setWork] = useState(getwork.flat());
     const [promiss, setPromiss] = useState([]);
+
+    console.log("before fillter:", work);
 
 
     //클릭시 날짜와 현재 날짜 비교해서 진우꺼 출력 시도 ==> 실패
     const clickDay = format(today, "dd");
     const [showToday, setShowToday] = useState(false);
 
-    console.log("클릭",parseInt(clickDay));
-    console.log("현재",currentdata);
+    useEffect(() => {
+        if (parseInt(clickDay) === currentdata) {
+            setShowToday(true);
+        } else {
+            setShowToday(false);
+        }
+    }, [clickDay, currentdata]);
 
-    // useEffect(() => {
-    //     setGetWork(work);
-    // }, [work, setGetWork]);
+    console.log(clickDay);
 
-    // useEffect(() => {
-    //     setGetWork(work);
-    //     if (clickDay === parseInt(today)) {
-    //         setShowToday(true);
-    //         console.log(showToday);
-    //     }
-    // }, []);
+    useEffect(() => {
+        const fillterWork = work.filter(work => work.ClickDay === clickDay);
+        setWork(fillterWork);
+    }, [today]);
+
+    useEffect(() => {
+        console.log("fillter end: ", work);
+    }, [work]);
+
+
+    // localStorage에 데이터 추가하는 함수
+    const addToLocalStorage = (key, value)=>{
+        const existData = localStorage.getItem(key);
+        const newData = existData ? JSON.parse(existData) : [];
+        newData.push(value);
+
+        localStorage.setItem(key, JSON.stringify(newData));
+    }
 
 
     return(
@@ -35,8 +51,11 @@ export default function ToDay({currentdata ,today}){
             <div>
                 <button  style={{margin: "10px"}} type={"button"} onClick={()=>setPagenum(1)} >할일</button>
                 <button style={{margin: "10px"}} type={"button"} onClick={()=>setPagenum(2)}>약속</button>
-                {showToday &&  <button style={{margin: "10px"}} type={"button"} onClick={()=>setPagenum(2)}>약속</button>}
-                {pageNum === 1 && <TodayComponent todos={work} setTodos={setWork} ClickDay={clickDay}/>}
+                {showToday &&  <button style={{margin: "10px"}} type={"button"} onClick={()=> {
+                    setPagenum(2);
+                    alert("전송되었습니다!!!");
+                }}>약속</button>}
+                {pageNum === 1 && <TodayComponent todos={work} setTodos={setWork} ClickDay={clickDay} setGetwork={setGetwork} local={addToLocalStorage}/>}
                 {pageNum === 2 && <PromissComponent todos={promiss} setTodos={setPromiss} ClickDay={clickDay}/>}
             </div>
         </div>
@@ -44,13 +63,12 @@ export default function ToDay({currentdata ,today}){
 }
 
 // "할일"을 선택했을때 동작하는 컴포넌트
-const TodayComponent=({todos, setTodos, ClickDay})=>{
+const TodayComponent=({todos, setTodos, ClickDay, local, setGetwork})=>{
 
-
-    useEffect(() => {
-        const fillterWork = todos.filter(todo => todo.ClickDay === ClickDay);
-        setTodos(fillterWork)
-    }, [ClickDay]);
+    // useEffect(() => {
+    //     const fillterWork = todos.filter(todo => todo.ClickDay === ClickDay);
+    //     setTodos(fillterWork)
+    // }, [ClickDay]);
 
     const TodayInput=({todos, setTodos})=> {
         const [title, setTitle] = useState("");
@@ -59,8 +77,8 @@ const TodayComponent=({todos, setTodos, ClickDay})=>{
         const onAdd = (title) => {
             const id = todos.length>0 ? todos[todos.length - 1].id + 1 : 1;
             setTodos([...todos, {  ClickDay ,id, title, check: false}]);
+            //setGetwork([...todos, {ClickDay, id, title}]);
         }
-
         return (
             <div>
                 <input type={"text"} placeholder={"할일"} ref={refTitle} onKeyPress={(event) => {
@@ -103,15 +121,23 @@ const TodayComponent=({todos, setTodos, ClickDay})=>{
             </div>
         )
     }
-    console.log(todos);
-    return(
+
+
+    console.log("work",todos)
+    const localName = "TodayList";
+    return (
         <div>
             <TodayInput todos={todos} setTodos={setTodos} ClickDay={ClickDay}/>
             <TodayList todos={todos} setTodos={setTodos} ClickDay={ClickDay}/>
             <br/>
-            <button type={"button"} onClick={()=>setTodos(todos)}>확인</button>
+            <button type={"button"} onClick={()=> {
+                local(localName, todos);
+                setGetwork(JSON.parse(localStorage.getItem(localName)));
+            }
+            }>확인
+            </button>
         </div>
-    )
+    );
 }
 
 
@@ -161,7 +187,6 @@ const PromissComponent=({todos, setTodos, ClickDay})=>{
     }
 // Promiss 할일을 보여줌
     const PromissList = ({todos, setTodos}) => {
-        console.log(todos);
         return (
             todos.map((todo) => (
                 <div style={{border: "1px solid black", margin: "10px", padding: "5px"}}>
