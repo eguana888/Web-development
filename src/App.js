@@ -4,6 +4,7 @@ import Calender from './Calender';
 import {useEffect, useState} from 'react';
 import { addMonths, format, subMonths, addDays,subDays} from "date-fns";
 import ToDay from './ToDay';
+import Diary from "./diary";
 
 
 function App() {

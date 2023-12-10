@@ -1,6 +1,8 @@
 import React, {useEffect, useRef, useState} from "react";
 import {addMonths, format, subMonths, addDays, subDays} from "date-fns";
 import CurentMap from "./CurentMap";
+import Diary from "./diary";
+import Stopwatch from "./Stopwatch";
 
 // 하루의 일정을 선택할 수 있는 화면
 export default function ToDay({currentdata ,today, getwork, setGetwork, getPromiss, setGetPromiss}){
@@ -16,10 +18,11 @@ export default function ToDay({currentdata ,today, getwork, setGetwork, getPromi
     //     setPromiss(getPromiss.flat());
     // }, []);
 
-    //클릭시 날짜와 현재 날짜 비교해서 진우꺼 출력
+    // 민성이 클릭 날짜 받기
     const clickDay = format(today, "dd");
+    // 진우가 수정한 const
     const [showToday, setShowToday] = useState(false);
-
+    const [diaryContent, setDiaryContent] = useState("");
 
     useEffect(() => {
         if (parseInt(clickDay) === currentdata) {
@@ -28,6 +31,24 @@ export default function ToDay({currentdata ,today, getwork, setGetwork, getPromi
             setShowToday(false);
         }
     }, [clickDay, currentdata]);
+
+    const onSaveDiary = (content) => {
+        const diaryData = {
+            data: format(today, "yyyy-MM-dd"),
+            content: content,
+        };
+        const existingDiary = JSON.parse(localStorage.getItem("Diary")) || [];
+        const existingDiaryIndex = existingDiary.findIndex(
+            (diary) => diary.data === diaryData.data
+        );
+        if (existingDiaryIndex != -1) {
+            existingDiary[existingDiaryIndex] = diaryData;
+        } else {
+            existingDiary.push(diaryData);
+        }
+
+        localStorage.setItem("Diary", JSON.stringify(existingDiary));
+    };
 
     // localStorage에 데이터 추가하는 함수
     const addToLocalStorage = (key, value)=>{
@@ -47,9 +68,14 @@ export default function ToDay({currentdata ,today, getwork, setGetwork, getPromi
                 <button style={{margin: "10px"}} type={"button"} onClick={()=>setPagenum(2)}>약속</button>
                 {showToday &&  <button style={{margin: "10px"}} type={"button"} onClick={()=> {
                     setPagenum(3);
-                }}>약속</button>}
+                }}>스톱워치(공부시간 측정)</button>}
+                {showToday &&  <button style={{margin: "10px"}} type={"button"} onClick={()=> {
+                    setPagenum(4);
+                }}>일기장</button>}
                 {pageNum === 1 && <TodayComponent todos={work} setTodos={setWork} ClickDay={clickDay} setGetwork={setGetwork} local={addToLocalStorage}/>}
                 {pageNum === 2 && <PromissComponent todos={promiss} setTodos={setPromiss} ClickDay={clickDay} setGetPromiss={setGetPromiss} local={addToLocalStorage}/>}
+                {pageNum === 3 && <Stopwatch/>}
+                {pageNum === 4 && <Diary onSaveDiary={onSaveDiary} diaryContent={diaryContent} setDiary={setDiaryContent}/>}
             </div>
         </div>
     );
