@@ -4,13 +4,14 @@ import Calender from './Calender';
 import {useEffect, useState} from 'react';
 import { addMonths, format, subMonths, addDays,subDays} from "date-fns";
 import ToDay from './ToDay';
-import CurentMap from "./CurentMap";
+
 
 function App() {
   const [getdate, setGetdata]=useState();
   const [check, setCheck]=useState(false);
 
   const [getwork, setGetwork] = useState();
+  const [getPromiss, setGetPromiss] = useState();
 
   useEffect(() => {
     const existData = localStorage.getItem("TodayList");
@@ -20,22 +21,24 @@ function App() {
     }
   }, []);
 
-  console.log("getwork",getwork);
+  useEffect(() => {
+    const existData = localStorage.getItem("PromissList");
+    const storedData = existData ? JSON.parse(localStorage.getItem("PromissList")) : [];
+    if (storedData) {
+      setGetPromiss(storedData);
+    }
+  }, []);
 
-  // const [promiss, setPromiss] = useState([]);
-
-  const currentData = new Date().getDay();
+  const currentData = new Date().getDate();
   const handCom = (data) => {
-    console.log('받아온 데이터',format(data,'yyyy-MM-dd'));
     setGetdata(data);
-    setCheck(true);
+    setCheck(!check);
   }
-  // console.log(getwork);
 
   return (
     <div>
       <Calender onSend = {handCom}/>
-      {check && <ToDay currentdata={currentData} today={getdate} getwork={getwork} setGetwork={setGetwork}/>}
+      {check && <ToDay style={{textAlign: "center"}} currentdata={currentData} today={getdate} getwork={getwork} setGetwork={setGetwork} getPromiss={getPromiss} setGetPromiss={setGetPromiss}/>}
     </div>
 
   );

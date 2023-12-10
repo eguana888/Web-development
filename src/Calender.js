@@ -146,7 +146,7 @@ const Body = ({CurrentDate, list, check,handClick}) => {
 }
 function Calender(pro){
     const [CurrentDate, setCurrentDate] = useState(new Date());
-    const [list, setList] = useState([{CDate: CurrentDate, tilte: '예: 과제 끝내기', check: false}]);
+    const [list, setList] = useState([]);
     const [check, setCheck] = useState(false);
 
     
