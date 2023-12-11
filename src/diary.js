@@ -109,10 +109,9 @@ export default function Diary({ onSaveDiary, diaryContent, setDiaryContent }) {
         };
         const onClearDiary = () => {
             // 저장된 일기 목록 초기화
-            localStorage.removeItem("diaries");
+            localStorage.removeItem("Diary");
 
             // 상태 초기화
-            setDiaryContent("");
             setSavedDiaries([]);
         };
 

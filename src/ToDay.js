@@ -67,7 +67,8 @@ export default function ToDay({currentdata ,today, getwork, setGetwork, getPromi
                 }}>일기장</Button>}
                 {pageNum === 1 && <TodayComponent todos={work} setTodos={setWork} ClickDay={clickDay}
                                                   setGetwork={setGetwork} local={addToLocalStorage}/>}
-                {pageNum === 2 && <PromissComponent todos={promiss} setTodos={setPromiss} ClickDay={clickDay} setGetPromiss={setGetPromiss} local={addToLocalStorage}/>}
+                {pageNum === 2 && <PromissComponent todos={promiss} setTodos={setPromiss} ClickDay={clickDay} setGetPromiss={setGetPromiss}
+                                                    local={addToLocalStorage}/>}
                 {pageNum === 3 && <Stopwatch/>}
                 {pageNum === 4 && <Diary onSaveDiary={onSaveDiary} diaryContent={diaryContent} setDiary={setDiaryContent}/>}
             </div>
@@ -90,7 +91,6 @@ const TodayComponent=({todos, setTodos, ClickDay, local, setGetwork})=>{
         const onAdd = (title) => {
             const id = todos.length>0 ? todos[todos.length - 1].id + 1 : 1;
             setTodos([...todos, {  ClickDay ,id, title, check: false}]);
-            //setGetwork([...todos, {ClickDay, id, title}]);
         }
         return (
             <div>
@@ -151,7 +151,10 @@ const TodayComponent=({todos, setTodos, ClickDay, local, setGetwork})=>{
             }
             }>확인
             </Button>
-            <Button variant="danger" className="firstButton" onClick={()=>{localStorage.removeItem("TodayList")}}>초기화</Button>
+            <Button variant="danger" className="firstButton" onClick={()=>{
+                localStorage.removeItem("TodayList");
+                setTodos([]);
+            }}>초기화</Button>
         </div>
     );
 }
@@ -243,7 +246,10 @@ const PromissComponent=({todos, setTodos, ClickDay, local, setGetPromiss})=> {
                 setGetPromiss(JSON.parse(localStorage.getItem(localName)));
             }}>확인
             </Button>
-            <Button variant="danger" className="firstButton" onClick={()=>{localStorage.removeItem("PromissList")}}>초기화</Button>
+            <Button variant="danger" className="firstButton" onClick={()=>{
+                localStorage.removeItem("PromissList");
+                setTodos([])
+            }}>초기화</Button>
 
         </div>
     )
