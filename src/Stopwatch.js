@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import "./Timerstyle.css"
+import "./Timerstyle.css";
+
 const TimerBox = () => {
     const [timer, setTimer] = useState(0);
     const [minute, setMinute] = useState("");
@@ -10,7 +11,7 @@ const TimerBox = () => {
     const [isTimerRunning, setIsTimerRunning] = useState(false);
 
     const startTimeRef = useRef(0);
-    const leftTimeRef = useRef(0);
+    const pausedTimeRef = useRef(0);
 
     useEffect(() => {
         minuteCalculator();
@@ -24,16 +25,15 @@ const TimerBox = () => {
     useEffect(() => {
         if (toggleTimer) {
             startTimeRef.current = Date.now();
-            leftTimeRef.current = timer;
             setIsTimerRunning(true);
-        } else if (!toggleTimer || timer < 0) {
-            // setIsTimerRunning(false);
+        } else if (!toggleTimer) {
+            setIsTimerRunning(false);
+            pausedTimeRef.current = timer; // 타이머 일시정지 시 현재 시간을 저장
         }
     }, [toggleTimer]);
 
     useEffect(() => {
         if (!isTimerRunning) {
-            addTime(1);
             setToggleBtnName("시작");
         } else if (isTimerRunning && !toggleTimer) {
             setToggleBtnName("다시시작");
@@ -48,7 +48,6 @@ const TimerBox = () => {
 
     const addTime = (time) => {
         setTimer((prev) => prev + time);
-        leftTimeRef.current += time;
     };
 
     const minuteCalculator = () => {
@@ -59,20 +58,19 @@ const TimerBox = () => {
     };
 
     const toggleTimerFunc = () => {
-        if (toggleTimer) {
-            setToggleTimer(false);
-        } else if (!toggleTimer && timer > 0) {
-            setToggleTimer(true);
-        }
+        setToggleTimer((prev) => !prev); // toggle 기능을 간단하게 처리
     };
 
     const timeDecrement = () => {
-        const timePassed = Date.now() - startTimeRef.current;
-        setTimer(leftTimeRef.current + timePassed);
+        if (toggleTimer) {
+            const timePassed = Date.now() - startTimeRef.current;
+            setTimer(pausedTimeRef.current + timePassed);
+        }
     };
 
     const clearTime = () => {
         setTimer(0);
+        pausedTimeRef.current = 0; // 타이머를 초기화할 때 pausedTimeRef도 초기화
     };
 
     return (
@@ -86,18 +84,12 @@ const TimerBox = () => {
                     <span className="timer__time__text">{milliSecond.padStart(2, "0")}</span>
                 </div>
             </div>
-            {/*<div className="timer__btn__area">*/}
-            {/*    <button className="btn_time" onClick={() => addTime(30 * 1000)}>+30sec</button>*/}
-            {/*    <button className="btn_time" onClick={() => addTime(60 * 1000)}>+60sec</button>*/}
-            {/*    <button className="btn_time" onClick={() => addTime(600 * 1000)}>+10min</button>*/}
-            {/*</div>*/}
             <div className="timer__btn__toggle">
-                <button className="btn_setup" onClick={() => toggleTimerFunc()}>{toggleBtnName}</button>
-                <button className="btn_setup" onClick={() => clearTime()}>초기화</button>
+                <button className="btn_setup" onClick={toggleTimerFunc}>{toggleBtnName}</button>
+                <button className="btn_setup" onClick={clearTime}>초기화</button>
             </div>
         </div>
     );
-
 };
 
 const useInterval = (callback, delay) => {
