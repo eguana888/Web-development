@@ -50,8 +50,16 @@ export default function ToDay({currentdata ,today, getwork, setGetwork, getPromi
         const existData = localStorage.getItem(key);
         const newData = existData ? JSON.parse(existData) : [];
 
-        newData.push(value);
-        localStorage.setItem(key, JSON.stringify(newData));
+        let pushArray=[]
+        for (let i = 0; i < newData.length; i++) {
+            if (newData[i][0].ClickDay !== value[0].ClickDay) {
+                pushArray.push(newData[i]);
+            }
+        }
+        pushArray.push(value);
+        localStorage.setItem(key, JSON.stringify(pushArray));
+        // newData.push(value);
+        // localStorage.setItem(key, JSON.stringify(newData));
     }
     return(
         <div className="MainArea">
@@ -138,7 +146,7 @@ const TodayComponent=({todos, setTodos, ClickDay, local, setGetwork})=>{
         )
     }
 
-
+    console.log(todos.flat());
     const localName = "TodayList";
     return (
         <div>
