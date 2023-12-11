@@ -165,8 +165,8 @@ function Calender(pro){
 
     return(
         <div style={{width: "100%"}}>
-            <table style={{borderCollapse: "collapse"}}>
                 <Header CurrentDate={CurrentDate} prevDate={prevDate} NextDate={NextDate} />
+            <table style={{borderCollapse: "collapse"}}>
                 <Week />
                 <Body CurrentDate={CurrentDate} list={list} check={check} handClick = {handClick}/>
             </table>

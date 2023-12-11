@@ -46,14 +46,13 @@ export default function ToDay({currentdata ,today, getwork, setGetwork, getPromi
     };
 
     // localStorage에 데이터 추가하는 함수
-    const addToLocalStorage = (key, value)=>{
+    const addToLocalStorage = (key, value) => {
         const existData = localStorage.getItem(key);
         const newData = existData ? JSON.parse(existData) : [];
 
         newData.push(value);
         localStorage.setItem(key, JSON.stringify(newData));
     }
-
     return(
         <div className="MainArea">
             <h1 style={{paddingLeft: "10px"}}>{format(today, "yyyy-MM-dd")}일</h1>
@@ -66,7 +65,8 @@ export default function ToDay({currentdata ,today, getwork, setGetwork, getPromi
                 {<Button variant="warning" className="firstButton" type={"button"} onClick={()=> {
                     setPagenum(4);
                 }}>일기장</Button>}
-                {pageNum === 1 && <TodayComponent todos={work} setTodos={setWork} ClickDay={clickDay} setGetwork={setGetwork} local={addToLocalStorage}/>}
+                {pageNum === 1 && <TodayComponent todos={work} setTodos={setWork} ClickDay={clickDay}
+                                                  setGetwork={setGetwork} local={addToLocalStorage}/>}
                 {pageNum === 2 && <PromissComponent todos={promiss} setTodos={setPromiss} ClickDay={clickDay} setGetPromiss={setGetPromiss} local={addToLocalStorage}/>}
                 {pageNum === 3 && <Stopwatch/>}
                 {pageNum === 4 && <Diary onSaveDiary={onSaveDiary} diaryContent={diaryContent} setDiary={setDiaryContent}/>}
@@ -133,7 +133,7 @@ const TodayComponent=({todos, setTodos, ClickDay, local, setGetwork})=>{
                 }}>
                     {todo.title}
                 </span>
-                {todo.check ? null : <Button variant="danger" onClick={()=>onDelet(todo.id)}>-</Button>}
+                {todo.check ? null : <Button variant="danger" onClick={()=>onDelet(todo.id)}> - </Button>}
             </div>
         )
     }
@@ -146,11 +146,12 @@ const TodayComponent=({todos, setTodos, ClickDay, local, setGetwork})=>{
             <TodayList todos={todos} setTodos={setTodos} ClickDay={ClickDay}/>
             <br/>
             <Button variant="success" className="firstButton" type={"button"} onClick={()=> {
-                local(localName, todos);
+                local(localName, todos.flat());
                 setGetwork(JSON.parse(localStorage.getItem(localName)));
             }
             }>확인
             </Button>
+            <Button variant="danger" className="firstButton" onClick={()=>{localStorage.removeItem("TodayList")}}>초기화</Button>
         </div>
     );
 }
@@ -212,13 +213,6 @@ const PromissComponent=({todos, setTodos, ClickDay, local, setGetPromiss})=> {
     };
 // Promiss 할일의 객체
     const PromissItem = ({todo, todos, setTodos}) => {
-
-        const onUpdate = (id) => {
-            setTodos(todos.map((todo) => {
-                if (todo.id === id) return {...todo}
-                return todo;
-            }));
-        }
         return (
             <div className="promissContainer">
                 <div>
@@ -245,10 +239,12 @@ const PromissComponent=({todos, setTodos, ClickDay, local, setGetPromiss})=> {
             </div>
             <br/>
             <Button variant="success" className="firstButton" onClick={() => {
-                local(localName, todos);
+                local(localName, todos.flat());
                 setGetPromiss(JSON.parse(localStorage.getItem(localName)));
             }}>확인
             </Button>
+            <Button variant="danger" className="firstButton" onClick={()=>{localStorage.removeItem("PromissList")}}>초기화</Button>
+
         </div>
     )
 }

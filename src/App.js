@@ -18,7 +18,7 @@ function App() {
     const existData = localStorage.getItem("TodayList");
     const storedData = existData ? JSON.parse(localStorage.getItem("TodayList")) : [];
     if (storedData) {
-      setGetwork(storedData);
+      setGetwork(storedData.flat());
     }
   }, []);
 
@@ -26,7 +26,7 @@ function App() {
     const existData = localStorage.getItem("PromissList");
     const storedData = existData ? JSON.parse(localStorage.getItem("PromissList")) : [];
     if (storedData) {
-      setGetPromiss(storedData);
+      setGetPromiss(storedData.flat());
     }
   }, []);
 
