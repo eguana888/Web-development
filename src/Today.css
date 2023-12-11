@@ -1,0 +1,48 @@
+.MainArea {
+    align-items: center;
+    text-align: center;
+    background-color: #EAEAEA;
+    border-radius: 15px;
+    margin: 10px 10px 10px 10px;
+    padding: 10px;
+}
+
+.firstButton{
+    width: 15%;
+    height: 60px;
+    margin: 10px;
+}
+.inputStyle{
+    font-size: 30px;
+    margin: 5px;
+    border-radius: 10px;
+}
+.inputTextStyle{
+    font-size: 30px;
+    padding: 5px;
+}
+.buttonContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.promissContainer {
+    width: 100%;
+    background: white;
+    display: inline-block;
+    font-size: 25px;
+    padding: 30px;
+    border: 1px solid black;
+}
+.promissList {
+    width: 30%;
+    margin: 10px;
+    padding: 5px;
+}
+.promissTotalContainer{
+    display: flex;
+    margin-top: 30px;
+}
+.LabelStyle{
+    font-weight: bold;
+}

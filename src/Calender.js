@@ -1,6 +1,6 @@
 import { addMonths, format, subMonths, addDays,subDays} from "date-fns";
 import React, { useState } from "react";
-
+import { Button} from "react-bootstrap";
 
 const Header = ({CurrentDate,prevDate,NextDate}) => {
     
@@ -8,12 +8,12 @@ const Header = ({CurrentDate,prevDate,NextDate}) => {
     return(
         <div style={{padding:10}}>
             <span style={{padding:10}}>
-                <button onClick={prevDate}>이전</button>
+                <Button variant="secondary" onClick={prevDate}>이전</Button>
             </span>
             <span >{format(CurrentDate,'yyyy')}.</span>
-            <span>{format(CurrentDate,'M')}</span>
+            <span >{format(CurrentDate,'M')}</span>
             <span style={{padding:10}}>
-                <button onClick={NextDate}>이후</button>
+                <Button variant="secondary" onClick={NextDate}>이후</Button>
             </span>
         </div>
     );
@@ -21,10 +21,11 @@ const Header = ({CurrentDate,prevDate,NextDate}) => {
 
 const Week = () => {
     const cSty = {
+        textAlign: "center",
         width: '200px',
         height: '50px',
         borderRadius: '10px',
-        border: '2px solid #DDD',
+        border: '4px solid #DDD',
         top: '50%',
         left: '50%'
     };
@@ -163,11 +164,12 @@ function Calender(pro){
     };
 
     return(
-        <div>
-            <Header CurrentDate={CurrentDate} prevDate={prevDate} NextDate={NextDate} />
-            <Week />
-            <Body CurrentDate={CurrentDate} list={list} check={check} handClick = {handClick}/>
-
+        <div style={{width: "100%"}}>
+            <table style={{borderCollapse: "collapse"}}>
+                <Header CurrentDate={CurrentDate} prevDate={prevDate} NextDate={NextDate} />
+                <Week />
+                <Body CurrentDate={CurrentDate} list={list} check={check} handClick = {handClick}/>
+            </table>
         </div>
         
     );

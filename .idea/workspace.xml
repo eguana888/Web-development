@@ -4,14 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e40aaabd-0734-4946-b2de-f83031b25b0a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Stopwatch.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Timer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Timerstyle.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/diary.js" afterDir="false" />
+    <list default="true" id="f9209a06-1969-4766-8941-1846e26e9369" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Today.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Calender.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Calender.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CurentMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/CurentMap.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ToDay.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/ToDay.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/diary.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/diary.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,7 +23,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -36,6 +38,10 @@
             <RecentBranchesForRepo>
               <option name="branches">
                 <list>
+                  <RecentBranch>
+                    <option name="branchName" value="timer_diary" />
+                    <option name="lastUsedInstant" value="1702219494" />
+                  </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="map" />
                     <option name="lastUsedInstant" value="1702033163" />
@@ -56,10 +62,10 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 1
-}</component>
-  <component name="ProjectId" id="2ZGCLdelORwPPQjn6lhEhPgsMsr" />
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 2
+}]]></component>
+  <component name="ProjectId" id="2ZNdHQrF1TYO4DA9GEZAnHzjMMX" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -73,7 +79,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "map",
-    "last_opened_file_path": "/Users/jogunhee/Code/React/2023-2/Web-development",
+    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -81,7 +87,6 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.Color Scheme Font",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -99,32 +104,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="final" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="final" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="e40aaabd-0734-4946-b2de-f83031b25b0a" name="Changes" comment="" />
-      <created>1702038975864</created>
+      <changelist id="f9209a06-1969-4766-8941-1846e26e9369" name="Changes" comment="" />
+      <created>1702266390805</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1702038975864</updated>
-      <workItem from="1702038978192" duration="6365000" />
-      <workItem from="1702094675423" duration="8486000" />
-      <workItem from="1702103593807" duration="1421000" />
-      <workItem from="1702210007302" duration="9272000" />
+      <updated>1702266390805</updated>
+      <workItem from="1702266410536" duration="3138000" />
     </task>
     <servers />
   </component>
@@ -136,26 +125,11 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="map" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

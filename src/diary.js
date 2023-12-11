@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-export default function Diary() {
-    const colors = {
+export default function Diary({ onSaveDiary, diaryContent, setDiaryContent }) {
+    const [colors] = useState({
         bgColor: 'lightgray',
         textColor: 'black',
         btnColor: 'blue',
-    };
+    });
+
+    const [savedDiaries, setSavedDiaries] = useState([]);
+
+    // 컴포넌트가 마운트될 때 저장된 일기 데이터를 불러옵니다.
+    useEffect(() => {
+        const existingDiaries = JSON.parse(localStorage.getItem("Diary")) || [];
+        setSavedDiaries(existingDiaries);
+    }, []);
 
     const Title = ({ children }) => (
         <h1 style={{ color: colors.textColor, margin: '50px 0', textAlign: 'center', fontSize: '30px', fontWeight: '500' }}>
@@ -31,7 +39,6 @@ export default function Diary() {
             onChange={onChange}
         />
     );
-
 
     const Btn = ({ onClick, children }) => (
         <button
@@ -83,13 +90,30 @@ export default function Diary() {
 
         const onChangeText = (event) => setFeelings(event.target.value);
         const onEmotionPress = (face) => setEmotion(face);
-        const UnEmotionPress = (face) => setEmotion(null);
+        const UnEmotionPress = () => setEmotion(null);
+
         const onSubmit = () => {
-            if (feelings === '' && selectedEmotion == null) {
-                window.alert('이모션과 코멘트중 하나 이상 작성하세요!');
+            if (selectedEmotion && feelings.trim() !== "") {
+                console.log("이모션:", selectedEmotion);
+                console.log("코멘트:", feelings);
+
+                // 일기 저장 함수 호출
+                onSaveDiary(selectedEmotion+feelings);
+
+                // 일기 작성 후 내용 초기화
+                setFeelings("");
+                setEmotion(null);
             } else {
-                console.log(feelings, selectedEmotion);
+                alert("이모션과 텍스트를 모두 작성해주세요!");
             }
+        };
+        const onClearDiary = () => {
+            // 저장된 일기 목록 초기화
+            localStorage.removeItem("diaries");
+
+            // 상태 초기화
+            setDiaryContent("");
+            setSavedDiaries([]);
         };
 
         return (
@@ -98,20 +122,36 @@ export default function Diary() {
                     {emotions.map((emotion, index) => (
                         <Emotion
                             selected={emotion === selectedEmotion}
-                            onClick={() => (selectedEmotion === emotion ? UnEmotionPress(emotion) : onEmotionPress(emotion))}
+                            onClick={() => (selectedEmotion === emotion ? UnEmotionPress() : onEmotionPress(emotion))}
                             key={index}
                         >
-                        <EmotionText>{emotion}</EmotionText>
+                            <EmotionText>{emotion}</EmotionText>
                         </Emotion>
                     ))}
                 </div>
+
                 <TextInput
                     value={feelings}
                     placeholder="오늘의 하루를 요약해주세요!"
                     onChange={onChangeText}
                 />
-                <Btn onClick={onSubmit}>save</Btn>
+
+                <Btn onClick={onSubmit}>Save</Btn>
+                <Btn onClick={onClearDiary}>Clear</Btn>
             </>
+        );
+    };
+
+    const DiaryList = () => {
+        return (
+            <div>
+                <h2>저장된 일기 목록</h2>
+                <ul>
+                    {savedDiaries.map((diary, index) => (
+                        <li key={index}>{diary.date}: {diary.content}</li>
+                    ))}
+                </ul>
+            </div>
         );
     };
 
@@ -119,6 +159,7 @@ export default function Diary() {
         <div style={{ backgroundColor: colors.bgColor, padding: '1px 50px' }}>
             <Title>오늘의 하루는..</Title>
             <Write />
+            <DiaryList />
         </div>
     );
 }

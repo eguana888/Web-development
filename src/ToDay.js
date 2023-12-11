@@ -3,20 +3,15 @@ import {addMonths, format, subMonths, addDays, subDays} from "date-fns";
 import CurentMap from "./CurentMap";
 import Diary from "./diary";
 import Stopwatch from "./Stopwatch";
-
+import "./Today.css"
+import "bootstrap/dist/css/bootstrap.min.css"
+import { Button} from "react-bootstrap";
 // 하루의 일정을 선택할 수 있는 화면
 export default function ToDay({currentdata ,today, getwork, setGetwork, getPromiss, setGetPromiss}){
     const [pageNum, setPagenum] = useState(0);
     const [work, setWork] = useState(getwork.flat());
     const [promiss, setPromiss] = useState(getPromiss.flat());
 
-    // useEffect(() => {
-    //     setWork(getwork.flat());
-    // }, []);
-    //
-    // useEffect(() => {
-    //     setPromiss(getPromiss.flat());
-    // }, []);
 
     // 민성이 클릭 날짜 받기
     const clickDay = format(today, "dd");
@@ -34,12 +29,12 @@ export default function ToDay({currentdata ,today, getwork, setGetwork, getPromi
 
     const onSaveDiary = (content) => {
         const diaryData = {
-            data: format(today, "yyyy-MM-dd"),
+            date: format(today, "yyyy-MM-dd"),
             content: content,
         };
         const existingDiary = JSON.parse(localStorage.getItem("Diary")) || [];
         const existingDiaryIndex = existingDiary.findIndex(
-            (diary) => diary.data === diaryData.data
+            (diary) => diary.date === diaryData.date
         );
         if (existingDiaryIndex != -1) {
             existingDiary[existingDiaryIndex] = diaryData;
@@ -59,19 +54,18 @@ export default function ToDay({currentdata ,today, getwork, setGetwork, getPromi
         localStorage.setItem(key, JSON.stringify(newData));
     }
 
-
     return(
-        <div style={{margin: "10px"}}>
+        <div className="MainArea">
             <h1 style={{paddingLeft: "10px"}}>{format(today, "yyyy-MM-dd")}일</h1>
             <div>
-                <button  style={{margin: "10px"}} type={"button"} onClick={()=>setPagenum(1)} >할일</button>
-                <button style={{margin: "10px"}} type={"button"} onClick={()=>setPagenum(2)}>약속</button>
-                {showToday &&  <button style={{margin: "10px"}} type={"button"} onClick={()=> {
+                <Button variant="primary" className="firstButton" type={"button"} onClick={()=>setPagenum(1)} >할일</Button>
+                <Button variant="primary" className="firstButton" type={"button"} onClick={()=>setPagenum(2)}>약속</Button>
+                {showToday &&  <Button variant="secondary" className="firstButton" type={"button"} onClick={()=> {
                     setPagenum(3);
-                }}>스톱워치(공부시간 측정)</button>}
-                {showToday &&  <button style={{margin: "10px"}} type={"button"} onClick={()=> {
+                }}>스톱워치(공부시간 측정)</Button>}
+                {<Button variant="warning" className="firstButton" type={"button"} onClick={()=> {
                     setPagenum(4);
-                }}>일기장</button>}
+                }}>일기장</Button>}
                 {pageNum === 1 && <TodayComponent todos={work} setTodos={setWork} ClickDay={clickDay} setGetwork={setGetwork} local={addToLocalStorage}/>}
                 {pageNum === 2 && <PromissComponent todos={promiss} setTodos={setPromiss} ClickDay={clickDay} setGetPromiss={setGetPromiss} local={addToLocalStorage}/>}
                 {pageNum === 3 && <Stopwatch/>}
@@ -100,7 +94,7 @@ const TodayComponent=({todos, setTodos, ClickDay, local, setGetwork})=>{
         }
         return (
             <div>
-                <input type={"text"} placeholder={"할일"} ref={refTitle} onKeyPress={(event) => {
+                <input className="inputStyle" type={"text"} placeholder={"할일"} ref={refTitle} onKeyPress={(event) => {
                     if (event.key === "Enter") {
                         onAdd(title);
                         setTitle("");
@@ -132,11 +126,14 @@ const TodayComponent=({todos, setTodos, ClickDay, local, setGetwork})=>{
             }));
         }
         return(
-            <div>
-                <span onClick={()=>onUpdate(todo.id, !todo.check)} style={{color: todo.check ? "Gray" : "Black"}}>
-                    {todo.check ? "[✓]": "[X]"}{todo.title}
+            <div className="buttonContainer" >
+                <span className="inputTextStyle" onClick={()=>onUpdate(todo.id, !todo.check)} style={{
+                    color: todo.check ? "Gray" : "Black",
+                    textDecoration: todo.check ? "line-through" : ""
+                }}>
+                    {todo.title}
                 </span>
-                {todo.check ? null : <button onClick={()=>onDelet(todo.id)}>-</button>}
+                {todo.check ? null : <Button variant="danger" onClick={()=>onDelet(todo.id)}>-</Button>}
             </div>
         )
     }
@@ -148,12 +145,12 @@ const TodayComponent=({todos, setTodos, ClickDay, local, setGetwork})=>{
             <TodayInput todos={todos} setTodos={setTodos} ClickDay={ClickDay}/>
             <TodayList todos={todos} setTodos={setTodos} ClickDay={ClickDay}/>
             <br/>
-            <button type={"button"} onClick={()=> {
+            <Button variant="success" className="firstButton" type={"button"} onClick={()=> {
                 local(localName, todos);
                 setGetwork(JSON.parse(localStorage.getItem(localName)));
             }
             }>확인
-            </button>
+            </Button>
         </div>
     );
 }
@@ -187,21 +184,15 @@ const PromissComponent=({todos, setTodos, ClickDay, local, setGetPromiss})=> {
 
         return (
             <div>
-                <input type={"text"} placeholder={"제목"} onChange={(event) => {
+                <input className="inputStyle" type={"text"} placeholder={"제목"} onChange={(event) => {
                     setTitle(event.target.value);
                 }} value={title}/><br/>
-                <input type={"text"} placeholder={"내용"} onChange={(event) => {
+                <input className="inputStyle" type={"text"} placeholder={"내용"} onChange={(event) => {
                     setContent(event.target.value);
                 }} value={content}/><br/>
-                <input type={"text"} placeholder={"장소(구체적으로)"} onKeyPress={(event) => {
+                <input className="inputStyle" type={"text"} placeholder={"장소(구체적으로)"} onKeyPress={(event) => {
                     if (event.key === "Enter") {
                         onAdd();
-                        // if (title.trim() !== "" && content.trim() !== "" && location.trim() !== "") {
-                        //     onAdd(location);
-                        //     setTitle("");
-                        //     setContent("");
-                        //     setLocation("");
-                        // }
                     }
                 }} onChange={(event) => {
                     setLocation(event.target.value);
@@ -213,7 +204,7 @@ const PromissComponent=({todos, setTodos, ClickDay, local, setGetPromiss})=> {
     const PromissList = ({todos, setTodos}) => {
         return (
             todos.map((todo) => (
-                <div style={{border: "1px solid black", margin: "10px", padding: "5px"}}>
+                <div className="promissList">
                     <PromissItem ClickDay={ClickDay} key={todo.id} todo={todo} todos={todos} setTodos={setTodos}/>
                 </div>
             ))
@@ -229,15 +220,15 @@ const PromissComponent=({todos, setTodos, ClickDay, local, setGetPromiss})=> {
             }));
         }
         return (
-            <div>
-                <div onClick={() => onUpdate(todo.id)} style={{color: "Gray"}}>
-                    제목: {todo.title}
+            <div className="promissContainer">
+                <div>
+                    <label className="LabelStyle">제목 : </label> {todo.title}
                 </div>
                 <div>
-                    내용: {todo.content}
+                    <label className="LabelStyle">내용 : </label> {todo.content}
                 </div>
                 <div>
-                    장소: {todo.location}
+                    <label className="LabelStyle">장소 : </label> {todo.location}
                 </div>
                 <CurentMap address={todo.location}/>
             </div>
@@ -248,14 +239,16 @@ const PromissComponent=({todos, setTodos, ClickDay, local, setGetPromiss})=> {
         <div>
             <div>
                 <PromissInput todos={todos} setTodos={setTodos} ClickDay={ClickDay}/>
-                <PromissList todos={todos} setTodos={setTodos} ClickDay={ClickDay}/>
+                <div  className="promissTotalContainer" >
+                    <PromissList todos={todos} setTodos={setTodos} ClickDay={ClickDay}/>
+                </div>
             </div>
             <br/>
-            <button type={"button"} onClick={() => {
+            <Button variant="success" className="firstButton" onClick={() => {
                 local(localName, todos);
                 setGetPromiss(JSON.parse(localStorage.getItem(localName)));
             }}>확인
-            </button>
+            </Button>
         </div>
     )
 }

@@ -33,8 +33,6 @@ export default function CurentMap({address}) {
         }, [address, navermaps.Service]);
         return (
             <NaverMap
-                //Latitude={lat}
-                //Longtitude={lng}
                 center={{lat, lng}}
                 defaultZoom={12}
                 zoom={zoom}
@@ -47,7 +45,7 @@ export default function CurentMap({address}) {
         <NavermapsProvider
             ncpClientId={"c993q8ts9o"}
             submodules={["geocoder"]}>
-            <MapDiv style={{width: "200px", height: "200px"}}>
+            <MapDiv style={{ height: "300px", marginTop:"20px"}}>
                 <Map address={address}/>
             </MapDiv>
         </NavermapsProvider>
